@@ -22,6 +22,12 @@ class IntListTest {
 	void testRemoveLast() {
 		myIntList.removeLast();
 		assertArrayEquals(new int[] {10, 20}, myIntList.getElements());
+		myIntList.removeLast();
+		assertArrayEquals(new int[] {10}, myIntList.getElements());
+		myIntList.removeLast();
+		assertArrayEquals(new int[] {}, myIntList.getElements());
+		myIntList.add(40);
+		assertArrayEquals(new int[] {40}, myIntList.getElements());
 	}
 
 }
