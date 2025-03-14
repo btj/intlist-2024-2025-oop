@@ -6,10 +6,17 @@ import java.util.Arrays;
 public class IntList {
 	
 	/**
+	 * @invar | elements != null
+	 * 
+	 * @representationObject
+	 */
+	private int[] elements;
+	
+	/**
 	 * @post | result != null
 	 * @creates | result
 	 */
-	public int[] getElements() { throw new RuntimeException("Not yet implemented"); }
+	public int[] getElements() { return elements.clone(); }
 	
 	/**
 	 * @throws IllegalArgumentException | elements == null
@@ -20,7 +27,7 @@ public class IntList {
 		if (elements == null)
 			throw new IllegalArgumentException("`elements` is null");
 		
-		throw new RuntimeException("Not yet implemented");
+		this.elements = elements.clone();
 	}
 	
 	/**
@@ -29,7 +36,16 @@ public class IntList {
 	 * @post | Arrays.equals(getElements(), 0, getElements().length - 1, old(getElements()), 0, old(getElements().length))
 	 * @post | getElements()[getElements().length - 1] == element
 	 */
-	public void add(int element) { throw new RuntimeException("Not yet implemented"); }
+	public void add(int element) {
+		this.elements = Arrays.copyOf(this.elements, this.elements.length + 1);
+		this.elements[this.elements.length - 1] = element;
+		
+//		int[] newElements = new int[elements.length + 1];
+//		for (int i = 0; i < elements.length; i++)
+//			newElements[i] = elements[i];
+//		newElements[elements.length] = element;
+//		this.elements = newElements;
+	}
 	
 	/**
 	 * @throws IllegalStateException | getElements().length == 0
@@ -41,7 +57,7 @@ public class IntList {
 		if (getElements().length == 0)
 			throw new IllegalStateException("The sequence of elements is empty.");
 		
-		throw new RuntimeException("Not yet implemented");
+		this.elements = Arrays.copyOf(this.elements, this.elements.length - 1);
 	}
 
 }
